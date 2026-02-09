@@ -8,8 +8,6 @@ app.use(express.json()); //jabtak ye line na likhe tab tak req.body me data aaye
 //POST /notes
 //req.body - {title, description}
 
-let notesArr = [];
-
 app.post("/notes", async (req, res) => {
   const { title, description } = req.body;
 
@@ -22,13 +20,14 @@ app.post("/notes", async (req, res) => {
     message: "Note Created Successfully",
     note,
   });
-  notesArr.push({ title, description });
 });
 
-app.get("/notes", (req, res) => {
-    res.status(200).json({
-        notesArr
-    })
+app.get("/notes", async (req, res) => {
+  const notes = await noteModel.find();
+  res.status(200).json({
+    message: "Notes Fetched Successfully",
+    notes,
+  });
 });
 
 module.exports = app;
