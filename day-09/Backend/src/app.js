@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 app.use(express.json()); //is middleware ke bina req.body ko samaj nahi sakoge bracket mat bhulna json ke aage galti se bhi
+app.use(cors());
 const noteModel = require("./models/notes.model");
 
 //POST API /api/notes
