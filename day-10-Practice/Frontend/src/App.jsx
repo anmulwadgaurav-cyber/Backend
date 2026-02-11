@@ -9,14 +9,14 @@ const App = () => {
   const [skillValue, setSkillValue] = useState("");
 
   async function render() {
-    let res = await axios.get("https://backend-ldmo.onrender.com/api/profile");
+    let res = await axios.get("http://localhost:3000/api/profile");
     setProfiles(res.data.fetchedProfiles);
     console.log(res.data.fetchedProfiles);
   }
 
   async function deleteProfile(profileId) {
     let res = await axios.delete(
-      "https://backend-ldmo.onrender.com/api/profile/" + profileId,
+      "http://localhost:3000/api/profile/" + profileId,
     );
     render();
   }
@@ -31,14 +31,11 @@ const App = () => {
     let action = e.nativeEvent.submitter.value; //ye batata hai ki form button ki current value kya hai
 
     if (action === "Create") {
-      let res = await axios.post(
-        "https://backend-ldmo.onrender.com/api/profile",
-        {
-          username: nameValue,
-          age: Number(ageValue),
-          skills: skillValue.toUpperCase(),
-        },
-      );
+      let res = await axios.post("http://localhost:3000/api/profile", {
+        username: nameValue,
+        age: Number(ageValue),
+        skills: skillValue.toUpperCase(),
+      });
     } else if (action === "Edit") {
       if (nameValue === "" && ageValue === "" && skillvalue === "") return;
       updateProfileData();
@@ -54,7 +51,7 @@ const App = () => {
 
   const updateProfileData = async () => {
     let res = await axios.patch(
-      "https://backend-ldmo.onrender.com/api/profile/" + updateDataApi._id,
+      "http://localhost:3000/api/profile/" + updateDataApi._id,
       {
         username: nameValue,
         age: Number(ageValue),
