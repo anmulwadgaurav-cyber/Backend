@@ -1,9 +1,13 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const path = require("path");
+const noteModel = require("./models/notes.model");
+
+//middlewares
 app.use(express.json()); //is middleware ke bina req.body ko samaj nahi sakoge bracket mat bhulna json ke aage galti se bhi
 app.use(cors());
-const noteModel = require("./models/notes.model");
+app.use(express.static("./public"));
 
 //POST API /api/notes
 //req.body = {title, description}
@@ -11,14 +15,18 @@ const noteModel = require("./models/notes.model");
 
 app.post("/api/notes", async (req, res) => {
   const { title, description } = req.body;
-  const note = await noteModel.create({
-    title,
-    description,
-  });
-  res.status(201).json({
-    message: "Note Created Succesfully",
-    note,
-  });
+  if (title === "" || description === "") {
+    return;
+  } else {
+    const note = await noteModel.create({
+      title,
+      description,
+    });
+    res.status(201).json({
+      message: "Note Created Succesfully",
+      note,
+    });
+  }
 });
 
 //GET API /api/notes
@@ -52,8 +60,11 @@ app.delete("/api/notes/:id", async (req, res) => {
 
 app.patch("/api/notes/:id", async (req, res) => {
   const id = req.params.id;
-  const { description } = req.body;
-  let updatedNote = await noteModel.findByIdAndUpdate(id, { description });
+  const { title, description } = req.body;
+  let updatedNoteTitle = await noteModel.findByIdAndUpdate(id, { title });
+  let updatedNoteDescription = await noteModel.findByIdAndUpdate(id, {
+    description,
+  });
   res.status(200).json({
     message: "Note Updated Successfully",
   });
@@ -62,5 +73,11 @@ app.patch("/api/notes/:id", async (req, res) => {
 //findByIdAndUpdate second parameter hamesha object me bhejna
 
 //dont forget async-await
+
+app.use("*name", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "/public/index.html"));
+});
+
+//if we write http://localhost:8000/asfij8ajfoa8iew4 still it will return "this is wild card route" it means we if you give any url it will return the specific response.
 
 module.exports = app;
