@@ -1,0 +1,21 @@
+@font-face {
+  font-family: mainFont;
+  src: url(./assets/GoogleSansFlex-VariableFont_GRAD\,ROND\,opsz\,slnt\,wdth\,wght.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: mainFont;
+}
+html,
+body,
+#root {
+  width: 100%;
+}
+
+html {
+  background-color: #efefef;
+  color: rgb(31, 31, 31);
+}

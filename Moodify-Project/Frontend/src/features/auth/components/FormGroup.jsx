@@ -1,0 +1,23 @@
+import React from "react";
+
+const FormGroup = ({ label, placeholder, type, value, onChange }) => {
+  return (
+    <div
+      className="form-group"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
+      <label htmlFor={label}>{label}</label>
+      <input
+        value={value}
+        onChange={onChange}
+        type={type}
+        id={label}
+        name={label}
+        placeholder={placeholder}
+        required
+      />
+    </div>
+  );
+};
+
+export default FormGroup;

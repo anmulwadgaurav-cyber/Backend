@@ -1,0 +1,17 @@
+.post-image-label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 3rem;
+    border: 3px dashed rgb(211, 211, 211);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: gray;
+    transition: all ease-in-out 0.1s;
+}
+
+
+.post-image-label:hover{
+    border: 3px dashed rgb(50, 50, 255);
+    color: rgb(50, 50, 255);
+}

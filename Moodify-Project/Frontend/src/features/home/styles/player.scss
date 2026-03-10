@@ -1,0 +1,83 @@
+.moodify-player {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  background: var(--player-bg, #ffffff);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.moodify-btn {
+  padding: 8px 10px;
+  border: none;
+  background: var(--btn-bg, #f3f4f6);
+  color: var(--btn-color, #111827);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.moodify-btn:hover {
+  filter: brightness(0.97);
+}
+
+.play-btn {
+  background: var(--accent, #0ea5a4);
+  color: white;
+}
+
+.skip-btn {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.progress-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.moodify-range {
+  width: 100%;
+  appearance: none;
+  height: 6px;
+  background: linear-gradient(90deg, var(--accent, #0ea5a4), #ddd);
+  border-radius: 6px;
+  outline: none;
+}
+
+/* range thumb */
+.moodify-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--accent, #0ea5a4);
+}
+
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 6px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.speed-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.speed-label {
+  font-size: 12px;
+}
+
+.speed-select {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
